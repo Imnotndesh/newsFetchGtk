@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.10.3 -->
+<interface>
+  <!-- interface-name newsgtk.ui -->
+  <requires lib="gtk" version="4.6"/>
+  <object class="GtkApplicationWindow" id="mainWin">
+    <property name="decorated">False</property>
+    <property name="default-height">340</property>
+    <property name="default-width">480</property>
+    <property name="title">My News</property>
+    <property name="titlebar">mainHeader</property>
+    <property name="vexpand">True</property>
+    <child>
+      <object class="GtkBox" id="mainCont">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkHeaderBar" id="mainHeader">
+            <child type="end">
+              <object class="GtkMenuButton" id="sideMenu">
+                <property name="direction">none</property>
+                <property name="popover">popoverWin</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton" id="backButton">
+                <property name="icon-name">go-previous-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="stackCont">
+            <property name="orientation">vertical</property>
+            <property name="vexpand">True</property>
+            <child>
+              <object class="GtkStack" id="mainStack">
+                <property name="transition-type">slide-left</property>
+                <property name="vexpand">True</property>
+                <child>
+                  <object class="GtkScrolledWindow" id="page1">
+                    <property name="vexpand">True</property>
+                    <child>
+                      <object class="GtkBox" id="pageOneCont">
+                        <property name="hexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="vexpand">True</property>
+                        <child>
+                          <object class="GtkSearchEntry" id="searchEntry">
+                            <property name="hexpand">True</property>
+                            <property name="placeholder-text">Search for a topic.....</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkListBox" id="searchResult">
+                            <property name="can-focus">False</property>
+                            <property name="focus-on-click">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="page2">
+                    <child>
+                      <object class="GtkTextView" id="newsContent">
+                        <property name="buffer">someFiller</property>
+                        <property name="cursor-visible">False</property>
+                        <property name="editable">False</property>
+                        <property name="justification">center</property>
+                        <property name="vexpand">True</property>
+                        <property name="wrap-mode">word</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTextBuffer" id="someFiller">
+    <property name="enable-undo">False</property>
+    <property name="text">something to just fill this space up</property>
+  </object>
+  <object class="GtkPopoverMenu" id="popoverWin">
+    <property name="child">
+      <object class="GtkBox" id="popCont">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkButton" id="placeholderTwo">
+            <property name="has-frame">False</property>
+            <property name="label">one</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="placeholderOne">
+            <property name="has-frame">False</property>
+            <property name="label">two</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="aboutBttn">
+            <property name="has-frame">False</property>
+            <property name="label">about</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </object>
+</interface>

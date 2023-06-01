@@ -1,0 +1,24 @@
+.titleContainers{
+    padding:10px;
+    animation: titleAnim 1.5s normal ;
+}
+@keyframes titleanim {
+    from{
+        border-radius: 0px;
+        transform: scale(1.0);
+    }
+    to{
+        border-radius: 15px;
+        transform: scale(1.02);
+        
+    }
+}
+.titleContainers:hover{
+    color: whitesmoke;
+    background-color: rgba(32, 124, 124, 0.76);
+    transform: scale(1.01);
+    border-radius: 15px;
+}
+.searchBar{
+    background-color: rgba(32, 124, 124, 0.623);
+}
