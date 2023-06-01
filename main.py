@@ -1,8 +1,4 @@
-import sys
-import gi
-import requests
-import json
-import styling
+import sys,gi,requests,json,styling
 gi.require_version("Gtk","4.0")
 gi.require_version("Adw","1")
 from gi.repository import Gtk,Adw
