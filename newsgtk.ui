@@ -15,15 +15,13 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkHeaderBar" id="mainHeader">
-            <child type="end">
-              <object class="GtkMenuButton" id="sideMenu">
-                <property name="direction">none</property>
-                <property name="popover">popoverWin</property>
-              </object>
-            </child>
-            <child type="end">
-              <object class="GtkButton" id="backButton">
-                <property name="icon-name">go-previous-symbolic</property>
+            <property name="css-classes">headerBar</property>
+            <child type="title">
+              <object class="GtkStackSwitcher" id="newStackSwitcher">
+                <property name="halign">center</property>
+                <property name="hexpand">True</property>
+                <property name="stack">mainStack</property>
+                <property name="vexpand">True</property>
               </object>
             </child>
           </object>
@@ -34,46 +32,85 @@
             <property name="vexpand">True</property>
             <child>
               <object class="GtkStack" id="mainStack">
-                <property name="transition-type">slide-left</property>
+                <property name="transition-type">slide-left-right</property>
                 <property name="vexpand">True</property>
                 <child>
-                  <object class="GtkScrolledWindow" id="page1">
-                    <property name="vexpand">True</property>
-                    <child>
+                  <object class="GtkStackPage" id="pageOne">
+                    <property name="child">
                       <object class="GtkBox" id="pageOneCont">
-                        <property name="hexpand">True</property>
+                        <property name="css-classes">stackPageOne</property>
                         <property name="orientation">vertical</property>
-                        <property name="vexpand">True</property>
                         <child>
-                          <object class="GtkSearchEntry" id="searchEntry">
+                          <object class="GtkLabel" id="searchTitle">
+                            <property name="css-classes">searchTitletext</property>
                             <property name="hexpand">True</property>
-                            <property name="placeholder-text">Search for a topic.....</property>
+                            <property name="justify">center</property>
+                            <property name="natural-wrap-mode">word</property>
+                            <property name="valign">center</property>
                           </object>
                         </child>
                         <child>
-                          <object class="GtkListBox" id="searchResult">
-                            <property name="can-focus">False</property>
-                            <property name="focus-on-click">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="vexpand">True</property>
+                          <object class="GtkScrolledWindow" id="searchScroll">
+                            <child>
+                              <object class="GtkBox" id="scrolledCont">
+                                <property name="hexpand">True</property>
+                                <property name="orientation">vertical</property>
+                                <property name="vexpand">True</property>
+                                <child>
+                                  <object class="GtkSearchEntry" id="searchEntry">
+                                    <property name="hexpand">True</property>
+                                    <property name="placeholder-text">Search for a topic.....</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkListBox" id="searchResult">
+                                    <property name="can-focus">False</property>
+                                    <property name="focus-on-click">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">True</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
-                    </child>
+                    </property>
+                    <property name="icon-name">system-search-symbolic</property>
+                    <property name="name">Search</property>
+                    <property name="title">Search</property>
+                    <property name="use-underline">True</property>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkScrolledWindow" id="page2">
-                    <child>
-                      <object class="GtkTextView" id="newsContent">
-                        <property name="buffer">someFiller</property>
-                        <property name="cursor-visible">False</property>
-                        <property name="editable">False</property>
-                        <property name="justification">center</property>
-                        <property name="vexpand">True</property>
-                        <property name="wrap-mode">word</property>
+                  <object class="GtkStackPage" id="pageTwo">
+                    <property name="child">
+                      <object class="GtkBox" id="headlinesContMain">
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkScrolledWindow" id="homeScroll">
+                            <child>
+                              <object class="GtkBox" id="homeScrollCont">
+                                <property name="hexpand">True</property>
+                                <property name="orientation">vertical</property>
+                                <property name="vexpand">True</property>
+                                <child>
+                                  <object class="GtkListBox" id="headlinesCont">
+                                    <property name="can-focus">False</property>
+                                    <property name="focus-on-click">False</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">True</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
-                    </child>
+                    </property>
+                    <property name="icon-name">user-home-symbolic</property>
+                    <property name="name">Home</property>
+                    <property name="title">Home</property>
                   </object>
                 </child>
               </object>
@@ -86,30 +123,5 @@
   <object class="GtkTextBuffer" id="someFiller">
     <property name="enable-undo">False</property>
     <property name="text">something to just fill this space up</property>
-  </object>
-  <object class="GtkPopoverMenu" id="popoverWin">
-    <property name="child">
-      <object class="GtkBox" id="popCont">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkButton" id="placeholderTwo">
-            <property name="has-frame">False</property>
-            <property name="label">one</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="placeholderOne">
-            <property name="has-frame">False</property>
-            <property name="label">two</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="aboutBttn">
-            <property name="has-frame">False</property>
-            <property name="label">about</property>
-          </object>
-        </child>
-      </object>
-    </property>
   </object>
 </interface>

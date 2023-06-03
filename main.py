@@ -18,15 +18,14 @@ class newsApp(Adw.Application):
     def on_activate(self,app):
         # Objects Obtained
         window = builder.get_object("mainWin")
-        backButton = builder.get_object("backButton")
         self.results =builder.get_object("searchResult")
         searchEntry = builder.get_object("searchEntry")
-
+        self.titleText = builder.get_object("searchTitle")
+        self.headlines = builder.get_object("headlinesCont")
         # To set css references
         styling.widgetStyling(searchEntry,window)
         
         # Connectors
-        backButton.connect('clicked',handlers.onBackButtonClick)
         searchEntry.connect('activate',self.onSearchEntry)
 
         # Window Actions
@@ -35,7 +34,8 @@ class newsApp(Adw.Application):
         
     def onSearchEntry(self,searchEntry):
             resbox = self.results
-            handlers.onSearchEntry(searchEntry,results=resbox)
+            title=self.titleText
+            handlers.onSearchEntry(searchEntry,results=resbox,title=title)
         
 app = newsApp(application_id="com.imnotndesh.mynews")
 app.run(sys.argv)

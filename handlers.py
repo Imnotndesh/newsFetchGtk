@@ -3,12 +3,22 @@ gi.require_version("Gtk","4.0")
 from gi.repository import Gtk
 builder = Gtk.Builder()
 
-def onBackButtonClick(backButton):
-    print("atleast")
+# def onAppLaunch(headlineCont):
+#     print(newsApi.headCollection['articles']['title'])
+#     # for items in newsApi.headlineCollection['articles']:
+#     #     headBox = Gtk.ListBoxRow()
+#     #     wordCont = Gtk.TextView()
+#     #     textbuff = wordCont.get_buffer()
+#     #     textbuff.set_text(f"{newscount}: {items['title']}")
+#     #     headBox.set_child(wordCont)
+#     #     headlineCont.append(headBox)
+#     #     wordCont.set_css_classes(['titleContainers'])
+#     #     newscount = newscount+1
 
-def onSearchEntry(searchEntry,results):
+def onSearchEntry(searchEntry,results,title):
     usrTopic=str(searchEntry.get_text())
-    newsApi.apiFetch(usrTopic)
+    title.set_text(f"Showing results for : {usrTopic}")
+    newsApi.searchFetch(usrTopic)
     newscount=1
     print(newsApi.newsCollection['status'])
 
