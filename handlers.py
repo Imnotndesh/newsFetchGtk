@@ -1,4 +1,5 @@
 import gi,newsApi
+import threading
 gi.require_version("Gtk","4.0")
 from gi.repository import Gtk
 builder = Gtk.Builder()
@@ -18,9 +19,9 @@ builder = Gtk.Builder()
 def onSearchEntry(searchEntry,results,title):
     usrTopic=str(searchEntry.get_text())
     title.set_text(f"Showing results for : {usrTopic}")
+    submitThread = threading.Thread(target=newsApi.searchFetch,daemon=True,args=(1,)).start()
     newsApi.searchFetch(usrTopic)
     newscount=1
-    print(newsApi.newsCollection['status'])
 
     # News titles populate
     for items in newsApi.newsCollection['articles']:
